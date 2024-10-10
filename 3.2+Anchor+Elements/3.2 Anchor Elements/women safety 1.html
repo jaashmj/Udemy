@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women Safety Check</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffe6f2;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff1493;
+    }
+
+    label {
+      font-weight: bold;
+      color: #ff1493;
+      display: block;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 2px solid #ff1493;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #ff1493;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Women Safety Location Check</h1>
+
+    <form id="locationForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="latitude">Location Latitude:</label>
+      <input type="number" id="latitude" placeholder="Enter latitude" required>
+
+      <label for="longitude">Location Longitude:</label>
+      <input type="number" id="longitude" placeholder="Enter longitude" required>
+
+      <label for="emergencyContactName">Emergency Contact Name:</label>
+      <input type="text" id="emergencyContactName" placeholder="Enter emergency contact name" required>
+
+      <label for="emergencyContactPhone">Emergency Contact Phone:</label>
+      <input type="text" id="emergencyContactPhone" placeholder="Enter emergency contact phone" required>
+
+      <button type="submit">Check Safety</button>
+    </form>
+
+    <footer>
+      <p>Your safety is our priority. Stay aware, stay safe!</p>
+    </footer>
+  </div>
+
+  <script>
+    // Define a safe zone (latitude and longitude range)
+    const safeZone = {
+      minLatitude: 10.0,  // Example values
+      maxLatitude: 50.0,
+      minLongitude: -120.0,
+      maxLongitude: -70.0
+    };
+
+    document.getElementById('locationForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value;
+      const latitude = parseFloat(document.getElementById('latitude').value);
+      const longitude = parseFloat(document.getElementById('longitude').value);
+      const emergencyContactName = document.getElementById('emergencyContactName').value;
+      const emergencyContactPhone = document.getElementById('emergencyContactPhone').value;
+
+      // Check if the location is safe
+      if (latitude >= safeZone.minLatitude && latitude <= safeZone.maxLatitude &&
+          longitude >= safeZone.minLongitude && longitude <= safeZone.maxLongitude) {
+        alert(`${name}, your location is safe!`);
+      } else {
+        alert(`${name}, your location is NOT safe! Please contact ${emergencyContactName} at ${emergencyContactPhone} for assistance.`);
+      }
+    });
+  </script>
+
+</body>
+</html>
